@@ -36,6 +36,29 @@ class TestAllgemein(unittest.TestCase):
         b = Bruch(z, n)
         assert(~b == Bruch(n, z))
 
+    def testRef2(self):
+        b4 = self.b
+        assert(self.b == b4)
+
+    def testJenkins1(self):
+        b4 = Bruch(3, 2)
+        assert(b4 == self.b)
+
+    def testJenkins2(self):
+        assert(self.b < self.b3)
+
+    def testJenkins3(self):
+        self.b3 = self.b3 * 2
+        assert(float(self.b3) == 4.0)
+
+    def testJenkins4(self):
+        self.b = self.b / self.b3
+        assert(float(self.b) != 1.5)
+
+    def testJenkins5(self):
+        self.b = self.b * Bruch(6)
+        assert(float(self.b) == 9.0)
+
     def testcreateBruchZeroError(self):
         self.assertRaises(ZeroDivisionError, Bruch, 3, 0)
 
